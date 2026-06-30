@@ -598,6 +598,13 @@ function Index() {
       >
         <WhatsAppIcon className="h-7 w-7" />
       </a>
+
+      <ProductModal
+        product={modalProduct}
+        lang={lang}
+        onClose={() => setModalProduct(null)}
+        onWatchVideo={(p) => { setModalProduct(null); navigate({ to: "/videos", hash: p.id }); }}
+      />
     </div>
   );
 }
