@@ -2,11 +2,15 @@ export type Product = {
   id: string;
   name: string;
   nameMr?: string;
+  nameHi?: string;
   category: Category;
   description: string;
   usage?: string;
+  dosage?: string;
+  timings?: string;
   sizes: string[];
   badge?: string;
+  videoId?: string;
 };
 
 export type Category =
@@ -18,7 +22,11 @@ export type Category =
   | "Foliar Spray"
   | "Soil / Granules"
   | "Grape Specialty"
-  | "Sugarcane Specialty";
+  | "Sugarcane Specialty"
+  | "Bio-Fertilizer"
+  | "Organic"
+  | "Micronutrient"
+  | "Spreader / Adjuvant";
 
 export const CATEGORIES: Category[] = [
   "Seaweed Extract",
@@ -30,6 +38,10 @@ export const CATEGORIES: Category[] = [
   "Soil / Granules",
   "Grape Specialty",
   "Sugarcane Specialty",
+  "Bio-Fertilizer",
+  "Organic",
+  "Micronutrient",
+  "Spreader / Adjuvant",
 ];
 
 export const PRODUCTS: Product[] = [
