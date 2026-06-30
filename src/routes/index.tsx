@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Leaf,
   Menu,
@@ -100,6 +100,60 @@ function Index() {
     [activeCategory],
   );
 
+  const productScrollRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll the product grid from right -> left (slow), pausing on manual interaction.
+  useEffect(() => {
+    const el = productScrollRef.current;
+    if (!el) return;
+
+    // Start at the far right edge.
+    el.scrollLeft = el.scrollWidth;
+
+    let paused = false;
+    let resumeTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const tick = () => {
+      if (paused) return;
+      if (el.scrollLeft <= 1) {
+        el.scrollLeft = el.scrollWidth;
+      } else {
+        el.scrollLeft -= 1;
+      }
+    };
+    const intervalId = setInterval(tick, 35); // slow auto-scroll speed
+
+    const pause = () => {
+      paused = true;
+      if (resumeTimer) clearTimeout(resumeTimer);
+    };
+    const scheduleResume = () => {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        paused = false;
+      }, 2500);
+    };
+
+    el.addEventListener("mouseenter", pause);
+    el.addEventListener("mouseleave", scheduleResume);
+    el.addEventListener("touchstart", pause, { passive: true });
+    el.addEventListener("touchend", scheduleResume);
+    el.addEventListener("pointerdown", pause);
+    el.addEventListener("pointerup", scheduleResume);
+    el.addEventListener("wheel", () => { pause(); scheduleResume(); }, { passive: true });
+
+    return () => {
+      clearInterval(intervalId);
+      if (resumeTimer) clearTimeout(resumeTimer);
+      el.removeEventListener("mouseenter", pause);
+      el.removeEventListener("mouseleave", scheduleResume);
+      el.removeEventListener("touchstart", pause);
+      el.removeEventListener("touchend", scheduleResume);
+      el.removeEventListener("pointerdown", pause);
+      el.removeEventListener("pointerup", scheduleResume);
+      el.removeEventListener("wheel", pause);
+    };
+  }, [filtered]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -342,11 +396,14 @@ function Index() {
             })}
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div
+            ref={productScrollRef}
+            className="grid grid-flow-col grid-rows-4 auto-cols-[19rem] gap-6 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
             {filtered.map((p) => (
               <article
                 key={p.id}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+                className="group relative flex h-[34rem] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
               >
                 {p.badge && (
                   <div className="absolute right-3 top-3 z-10 rounded-full bg-ecsi-gold px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-foreground/90 shadow">
@@ -372,7 +429,7 @@ function Index() {
                   </div>
                 </button>
 
-                <div className="flex flex-1 flex-col p-5">
+                <div className="flex flex-1 flex-col overflow-hidden p-5">
                   <h3 className="font-display text-lg font-bold leading-tight">{p.name}</h3>
                   {p.nameMr && <div className="mt-0.5 text-sm text-ecsi-orange" lang="mr">{p.nameMr}</div>}
                   <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
