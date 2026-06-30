@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   Leaf,
@@ -15,12 +15,18 @@ import {
   Phone,
   ChevronDown,
   Package,
+  Globe,
+  Play,
+  Info,
 } from "lucide-react";
 import logoAsset from "@/assets/ecsi-logo.asset.json";
 import heroFarm from "@/assets/hero-farm.jpg";
-import { PRODUCTS, CATEGORIES, type Category } from "@/data/products";
-import { waLink, orderMessage, GENERAL_MESSAGE } from "@/lib/whatsapp";
+import { PRODUCTS, CATEGORIES, type Category, type Product } from "@/data/products";
+import { waLink, GENERAL_MESSAGE } from "@/lib/whatsapp";
 import { useTheme } from "@/hooks/use-theme";
+import { useLanguage, type Lang } from "@/hooks/use-language";
+import { t, LANG_LABEL } from "@/lib/i18n";
+import { ProductModal } from "@/components/ProductModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,32 +38,68 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const NAV = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About ECSI" },
-  { href: "#products", label: "Products" },
-  { href: "#bulk", label: "Bulk Orders" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#contact", label: "Contact" },
-];
-
 const WhatsAppIcon = ({ className = "h-5 w-5" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
     <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.45L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zM17.91 14.305c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
   </svg>
 );
 
+function LanguageMenu({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        onBlur={() => setTimeout(() => setOpen(false), 150)}
+        className="inline-flex h-10 items-center gap-1.5 rounded-full border border-border px-3 text-xs font-semibold text-foreground transition-colors hover:bg-secondary"
+        aria-label="Change language"
+      >
+        <Globe className="h-4 w-4" />
+        <span className="hidden sm:inline">{LANG_LABEL[lang]}</span>
+        <span className="sm:hidden uppercase">{lang}</span>
+      </button>
+      {open && (
+        <div className="absolute right-0 top-12 z-50 w-40 overflow-hidden rounded-xl border border-border bg-popover shadow-xl">
+          {(["en", "hi", "mr"] as Lang[]).map((l) => (
+            <button
+              key={l}
+              onMouseDown={(e) => { e.preventDefault(); setLang(l); setOpen(false); }}
+              className={`flex w-full items-center justify-between px-4 py-2.5 text-sm transition-colors hover:bg-secondary ${
+                lang === l ? "bg-secondary font-semibold text-ecsi-orange" : ""
+              }`}
+            >
+              {LANG_LABEL[l]}
+              {lang === l && <span className="text-ecsi-orange">●</span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Index() {
   const { theme, toggle } = useTheme();
+  const { lang, setLang } = useLanguage();
+  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
-  const [selectedSize, setSelectedSize] = useState<Record<string, string>>({});
+  const [modalProduct, setModalProduct] = useState<Product | null>(null);
+
+  const NAV = [
+    { href: "#home", label: t("nav_home", lang) },
+    { href: "#about", label: t("nav_about", lang) },
+    { href: "#products", label: t("nav_products", lang) },
+    { href: "#bulk", label: t("nav_bulk", lang) },
+    { href: "#certifications", label: t("nav_cert", lang) },
+    { href: "#contact", label: t("nav_contact", lang) },
+  ];
 
   const filtered = useMemo(
     () => (activeCategory === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.category === activeCategory)),
     [activeCategory],
   );
+
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -71,14 +113,18 @@ function Index() {
               <div className="text-[10px] font-medium tracking-widest text-muted-foreground">SCIENCE INDUSTRIES</div>
             </div>
           </a>
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {NAV.map((n) => (
               <a key={n.href} href={n.href} className="text-sm font-medium text-foreground/80 transition-colors hover:text-ecsi-orange">
                 {n.label}
               </a>
             ))}
+            <Link to="/videos" className="text-sm font-medium text-foreground/80 transition-colors hover:text-ecsi-orange">
+              {t("nav_videos", lang)}
+            </Link>
           </nav>
           <div className="flex items-center gap-2">
+            <LanguageMenu lang={lang} setLang={setLang} />
             <button
               onClick={toggle}
               aria-label="Toggle theme"
@@ -92,7 +138,7 @@ function Index() {
               rel="noreferrer"
               className="hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform hover:scale-[1.03] md:inline-flex"
             >
-              <WhatsAppIcon className="h-4 w-4" /> Order on WhatsApp
+              <WhatsAppIcon className="h-4 w-4" /> {t("order_wa", lang)}
             </a>
             <button
               onClick={() => setDrawerOpen(true)}
@@ -108,41 +154,82 @@ function Index() {
       {/* MOBILE DRAWER */}
       {drawerOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setDrawerOpen(false)} />
-          <aside className="absolute right-0 top-0 h-full w-[82%] max-w-sm bg-background p-6 shadow-2xl">
-            <div className="mb-6 flex items-center justify-between">
-              <img src={logoAsset.url} alt="ECSI" className="h-12 w-12 object-contain" />
-              <button onClick={() => setDrawerOpen(false)} aria-label="Close menu" className="grid h-10 w-10 place-items-center rounded-full border border-border">
-                <X className="h-5 w-5" />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDrawerOpen(false)} />
+          <aside className="absolute right-0 top-0 h-full w-[85%] max-w-sm overflow-y-auto bg-background shadow-2xl">
+            <div
+              className="relative px-6 pb-6 pt-7 text-white"
+              style={{ background: "linear-gradient(135deg, var(--ecsi-red), var(--ecsi-orange))" }}
+            >
+              <button
+                onClick={() => setDrawerOpen(false)}
+                aria-label="Close menu"
+                className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-white/20 backdrop-blur hover:bg-white/30"
+              >
+                <X className="h-4 w-4" />
               </button>
+              <img src={logoAsset.url} alt="ECSI" className="h-14 w-14 rounded-lg bg-white p-1.5 object-contain" />
+              <div className="mt-3 font-display text-lg font-bold leading-tight">EAGLECROP</div>
+              <div className="text-[10px] tracking-widest opacity-90">SCIENCE INDUSTRIES</div>
             </div>
-            <nav className="flex flex-col gap-1">
-              {NAV.map((n) => (
-                <a
-                  key={n.href}
-                  href={n.href}
+
+            <div className="p-5">
+              <div className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Menu</div>
+              <nav className="flex flex-col">
+                {NAV.map((n) => (
+                  <a
+                    key={n.href}
+                    href={n.href}
+                    onClick={() => setDrawerOpen(false)}
+                    className="flex min-h-[48px] items-center justify-between rounded-lg px-3 text-base font-medium text-foreground hover:bg-secondary"
+                  >
+                    {n.label}
+                    <ChevronDown className="-rotate-90 h-4 w-4 text-muted-foreground" />
+                  </a>
+                ))}
+                <Link
+                  to="/videos"
                   onClick={() => setDrawerOpen(false)}
-                  className="flex min-h-[48px] items-center rounded-lg px-3 text-base font-medium text-foreground hover:bg-secondary"
+                  className="flex min-h-[48px] items-center justify-between rounded-lg px-3 text-base font-medium text-foreground hover:bg-secondary"
                 >
-                  {n.label}
-                </a>
-              ))}
-            </nav>
-            <button
-              onClick={toggle}
-              className="mt-6 flex w-full items-center justify-between rounded-lg border border-border px-4 py-3 text-sm font-medium"
-            >
-              <span>Theme</span>
-              {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-            </button>
-            <a
-              href={waLink(GENERAL_MESSAGE)}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 text-base font-semibold text-white"
-            >
-              <WhatsAppIcon className="h-5 w-5" /> Order via WhatsApp
-            </a>
+                  <span className="inline-flex items-center gap-2"><Play className="h-4 w-4 text-ecsi-red" /> {t("nav_videos", lang)}</span>
+                  <ChevronDown className="-rotate-90 h-4 w-4 text-muted-foreground" />
+                </Link>
+              </nav>
+
+              <div className="mt-6 space-y-2">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{t("language", lang)}</div>
+                <div className="flex gap-2">
+                  {(["en", "hi", "mr"] as Lang[]).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setLang(l)}
+                      className={`flex-1 rounded-lg border px-2 py-2 text-xs font-semibold transition-all ${
+                        lang === l ? "border-ecsi-red bg-ecsi-red text-white" : "border-border bg-background"
+                      }`}
+                    >
+                      {LANG_LABEL[l]}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={toggle}
+                className="mt-4 flex w-full items-center justify-between rounded-lg border border-border px-4 py-3 text-sm font-medium"
+              >
+                <span>{t("theme", lang)}</span>
+                {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+              </button>
+
+              <a
+                href={waLink(GENERAL_MESSAGE)}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 text-base font-semibold text-white shadow-lg"
+              >
+                <WhatsAppIcon className="h-5 w-5" /> {t("order_wa", lang)}
+              </a>
+            </div>
           </aside>
         </div>
       )}
@@ -256,98 +343,89 @@ function Index() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filtered.map((p) => {
-              const isOpen = expanded[p.id];
-              const selSize = selectedSize[p.id];
-              return (
-                <article
-                  key={p.id}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+            {filtered.map((p) => (
+              <article
+                key={p.id}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+              >
+                {p.badge && (
+                  <div className="absolute right-3 top-3 z-10 rounded-full bg-ecsi-gold px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-foreground/90 shadow">
+                    {p.badge}
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setModalProduct(p)}
+                  className="relative grid h-44 place-items-center overflow-hidden text-left"
+                  style={{ background: "linear-gradient(135deg, var(--ecsi-green), oklch(0.32 0.08 145))" }}
                 >
-                  {p.badge && (
-                    <div className="absolute right-3 top-3 z-10 rounded-full bg-ecsi-gold px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-foreground/90 shadow">
-                      {p.badge}
-                    </div>
-                  )}
                   <div
-                    className="relative grid h-44 place-items-center overflow-hidden"
-                    style={{ background: "linear-gradient(135deg, var(--ecsi-green), oklch(0.32 0.08 145))" }}
-                  >
-                    <div
-                      className="absolute inset-0 opacity-40"
-                      style={{ background: "radial-gradient(circle at 70% 30%, var(--ecsi-orange), transparent 55%)" }}
-                    />
-                    <div className="relative flex flex-col items-center text-white">
-                      <Package className="h-12 w-12 opacity-90" strokeWidth={1.5} />
-                      <div className="mt-2 px-3 text-center font-display text-lg font-bold leading-tight">{p.name}</div>
+                    className="absolute inset-0 opacity-40"
+                    style={{ background: "radial-gradient(circle at 70% 30%, var(--ecsi-orange), transparent 55%)" }}
+                  />
+                  <div className="relative flex flex-col items-center text-white">
+                    <Package className="h-12 w-12 opacity-90" strokeWidth={1.5} />
+                    <div className="mt-2 px-3 text-center font-display text-lg font-bold leading-tight">{p.name}</div>
+                  </div>
+                  <div className="absolute bottom-2 left-2 rounded-full bg-black/35 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur">
+                    {p.category}
+                  </div>
+                </button>
+
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-display text-lg font-bold leading-tight">{p.name}</h3>
+                  {p.nameMr && <div className="mt-0.5 text-sm text-ecsi-orange" lang="mr">{p.nameMr}</div>}
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
+
+                  <div className="mt-4">
+                    <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      {t("sizes", lang)}
                     </div>
-                    <div className="absolute bottom-2 left-2 rounded-full bg-black/35 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur">
-                      {p.category}
+                    <div className="flex flex-wrap gap-1.5">
+                      {p.sizes.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full border border-border bg-background px-2.5 py-1 text-xs font-semibold text-foreground/80"
+                        >
+                          {s}
+                        </span>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-display text-lg font-bold leading-tight">{p.name}</h3>
-                    {p.nameMr && <div className="mt-0.5 text-sm text-ecsi-orange" lang="mr">{p.nameMr}</div>}
-                    <p className={`mt-2 text-sm leading-relaxed text-muted-foreground ${isOpen ? "" : "line-clamp-3"}`}>
-                      {p.description}
-                    </p>
-                    {p.usage && isOpen && (
-                      <div className="mt-3 rounded-lg border border-border bg-secondary/60 p-3 text-xs leading-relaxed text-foreground/80">
-                        <div className="mb-1 font-semibold text-ecsi-green">Usage & Dosage</div>
-                        {p.usage}
-                      </div>
-                    )}
-                    {(p.description.length > 110 || p.usage) && (
-                      <button
-                        onClick={() => setExpanded((e) => ({ ...e, [p.id]: !e[p.id] }))}
-                        className="mt-2 self-start text-xs font-semibold text-ecsi-orange hover:underline"
-                      >
-                        {isOpen ? "Show less" : "Read more"}
-                      </button>
-                    )}
+                  <div className="mt-4 inline-flex items-center gap-1.5 self-start rounded-full bg-ecsi-green/10 px-2.5 py-1 text-[10px] font-semibold text-ecsi-green">
+                    <Sprout className="h-3 w-3" /> {t("bulk_avail", lang)}
+                  </div>
 
-                    <div className="mt-4">
-                      <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        Available Sizes
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {p.sizes.map((s) => {
-                          const active = selSize === s;
-                          return (
-                            <button
-                              key={s}
-                              onClick={() => setSelectedSize((m) => ({ ...m, [p.id]: active ? "" : s }))}
-                              className={`rounded-full border px-2.5 py-1 text-xs font-semibold transition-all ${
-                                active
-                                  ? "border-ecsi-red bg-ecsi-red text-white"
-                                  : "border-border bg-background text-foreground/80 hover:border-ecsi-orange"
-                              }`}
-                            >
-                              {s}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    <div className="mt-4 inline-flex items-center gap-1.5 self-start rounded-full bg-ecsi-green/10 px-2.5 py-1 text-[10px] font-semibold text-ecsi-green">
-                      <Sprout className="h-3 w-3" /> Bulk Orders Available
-                    </div>
-
-                    <a
-                      href={waLink(orderMessage(p.name, selSize))}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-4 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+                  <div className="mt-4 grid gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setModalProduct(p)}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-4 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
                     >
                       <WhatsAppIcon className="h-4 w-4" />
-                      Order on WhatsApp{selSize ? ` · ${selSize}` : ""}
-                    </a>
+                      {t("order_wa", lang)}
+                    </button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setModalProduct(p)}
+                        className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border px-3 py-2 text-xs font-semibold text-foreground/80 hover:border-ecsi-orange hover:text-ecsi-orange"
+                      >
+                        <Info className="h-3.5 w-3.5" /> {t("details", lang)}
+                      </button>
+                      <Link
+                        to="/videos"
+                        hash={p.id}
+                        className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border px-3 py-2 text-xs font-semibold text-foreground/80 hover:border-ecsi-red hover:text-ecsi-red"
+                      >
+                        <Play className="h-3.5 w-3.5" /> {t("watch_video", lang)}
+                      </Link>
+                    </div>
                   </div>
-                </article>
-              );
-            })}
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -520,6 +598,13 @@ function Index() {
       >
         <WhatsAppIcon className="h-7 w-7" />
       </a>
+
+      <ProductModal
+        product={modalProduct}
+        lang={lang}
+        onClose={() => setModalProduct(null)}
+        onWatchVideo={(p) => { setModalProduct(null); navigate({ to: "/videos", hash: p.id }); }}
+      />
     </div>
   );
 }
