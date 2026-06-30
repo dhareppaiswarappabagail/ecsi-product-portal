@@ -1,5 +1,6 @@
 export type Product = {
   id: string;
+  image?: string;
   name: string;
   nameMr?: string;
   nameHi?: string;
@@ -47,6 +48,7 @@ export const CATEGORIES: Category[] = [
 export const PRODUCTS: Product[] = [
   {
     id: "simplex",
+    image: "/products/simplex.jpg",
     name: "Simplex",
     category: "Humic & Fulvic",
     description: "Potassium Humate 98% concentrated powder. Improves root development, soil structure and nutrient uptake efficiency.",
@@ -54,6 +56,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "dharti-gold",
+    image: "/products/dharti-gold.jpg",
     name: "Dharti Gold",
     nameMr: "धरती गोल्ड",
     category: "Soil / Granules",
@@ -63,6 +66,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "dharati-ratn",
+    image: "/products/dharati-ratn.jpg",
     name: "Dharati Ratn",
     category: "Soil / Granules",
     description: "General-purpose granular soil nutrition for cotton, sugarcane, onion, grapes and vegetables.",
@@ -70,6 +74,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "prime-plus",
+    image: "/products/prime-plus.jpg",
     name: "Prime Plus",
     category: "Foliar Spray",
     description: "Silicon 60% + Amino Acid 40% foliar formulation for every crop and every stage. Strengthens cell walls and improves stress tolerance.",
@@ -77,6 +82,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "can-master",
+    image: "/products/can-master.jpg",
     name: "Can Master",
     category: "Grape Specialty",
     description: "Plant & fruit growth promoter recommended after April pruning for grape garbhdharna (fruit-set). High-quality catalyst for bunch formation.",
@@ -85,6 +91,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "aprilia",
+    image: "/products/aprilia.jpg",
     name: "Aprilia",
     category: "Soil / Granules",
     description: "Mixed micronutrient soil-application granules for improved crop nutrition across vegetables.",
@@ -93,6 +100,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "plant-bro",
+    image: "/products/plant-bro.jpg",
     name: "Plant Bro",
     nameMr: "प्लांट ब्रो",
     category: "Foliar Spray",
@@ -102,6 +110,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "nano-gel",
+    image: "/products/nano-gel.jpg",
     name: "Nano Gel",
     nameMr: "नॅनो जेल",
     category: "PGR",
@@ -111,6 +120,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "shoot-out",
+    image: "/products/shoot-out.jpg",
     name: "Shoot Out",
     category: "PGR",
     description: "Plant growth regulator supporting healthy shoot & flowering while addressing grape flea beetles and red-headed flea beetles.",
@@ -118,6 +128,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "psp-99",
+    image: "/products/psp-99.jpg",
     name: "PSP 99",
     category: "Foliar Spray",
     description: "Specialty foliar nutrition for vegetable crops supporting plant vigor and leaf health.",
@@ -125,6 +136,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "6-ba",
+    image: "/products/6-ba.jpg",
     name: "6-BA",
     category: "PGR",
     description: "6-Benzylaminopurine cytokinin (C₁₂H₁₁N₅, MW 225.26). Precision PGR for tissue development — small-dose lab/field use.",
@@ -132,6 +144,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "lemore",
+    image: "/products/lemore.jpg",
     name: "Lemore",
     category: "PGR",
     description: "Growth enhancer that increases chlorophyll, flower count, fruit-set %, yield, color and aroma. For all crop types.",
@@ -140,6 +153,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "green-gold",
+    image: "/products/green-gold.jpg",
     name: "Green Gold",
     category: "Seaweed Extract",
     description: "Atlantic-seaweed extract produced via Bio-Active Induced Lacto-Fermentation Technology — unlocks maximum yield potential.",
@@ -149,6 +163,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "biotin",
+    image: "/products/biotin.jpg",
     name: "Biotin",
     category: "Grape Specialty",
     description: "Specialty grape growth-stage product for fruit-setting support after pruning.",
@@ -157,6 +172,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "achieva-plus",
+    image: "/products/achieva-plus.jpg",
     name: "Achieva Plus",
     category: "Foliar Spray",
     description: "Organic plant growth promoter for vigorous vegetable growth through organic active ingredients.",
@@ -164,6 +180,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "milan-sudo",
+    image: "/products/milan-sudo.jpg",
     name: "Milan Sudo",
     category: "Microbial",
     description: "Pseudomonas Fluorescens 0.5% WP — biological agent supporting plant health and suppressing soil-borne pathogens.",
@@ -171,6 +188,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "milan-trycho",
+    image: "/products/milan-trycho.jpg",
     name: "Milan Trycho",
     category: "Microbial",
     description: "Trichoderma Viride bio-fungicide and natural root health enhancer.",
@@ -178,6 +196,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "uptech-98",
+    image: "/products/uptech-98.jpg",
     name: "Uptech 98",
     category: "Grape Specialty",
     description: "Draksha-salla cold-stress product (10–12°C) — addresses stalled growth, small berries, low pulp, poor uptake and low sugar.",
@@ -186,6 +205,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "quick-sugar",
+    image: "/products/quick-sugar.jpg",
     name: "Quick Sugar",
     category: "Grape Specialty",
     description: "Grape sugar-enhancement product to boost bunch sugar content.",
@@ -194,6 +214,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "eg-long-40",
+    image: "/products/eg-long-40.jpg",
     name: "EG Long 40",
     category: "PGR",
     description: "Natural-source hormone mix that synthesizes proteins & amino acids — enhances flowering, fruit-set, size, color, luster, taste and shelf life.",
@@ -203,6 +224,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "g2",
+    image: "/products/g2.jpg",
     name: "G2",
     category: "Sugarcane Specialty",
     description: "Sugarcane growth product for record yields at lower cost — more tillers, longer canes, broader leaves and darker internodes.",
@@ -211,6 +233,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "super-shot",
+    image: "/products/super-shot.jpg",
     name: "Super Shot",
     category: "Foliar Spray",
     description: "Silicone spreader-activator for better tank-mix performance of weedicides, insecticides, fungicides, PGRs and pesticides.",
@@ -218,6 +241,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "mg-gold",
+    image: "/products/mg-gold.jpg",
     name: "MG Gold",
     category: "Amino & Protein",
     description: "Amino Acid 80% — concentrated formulation for plant nutrition, stress recovery and metabolic efficiency.",
@@ -225,6 +249,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "nova-gold",
+    image: "/products/nova-gold.jpg",
     name: "Nova Gold",
     category: "Humic & Fulvic",
     description: "Fulvic Acid formulation — nutrient chelation and improved micronutrient uptake.",
@@ -232,6 +257,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "garba-gold",
+    image: "/products/garba-gold.jpg",
     name: "Garba Gold",
     nameMr: "गर्भ गोल्ड",
     category: "Grape Specialty",
@@ -241,6 +267,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "miracle-gro",
+    image: "/products/miracle-gro.jpg",
     name: "Miracle-Gro",
     category: "Seaweed Extract",
     description: "Seaweed extract + humic/fulvic acid + amino acids + vitamins. For grapes, tomato, okra, beans, brinjal, pomegranate and leafy greens.",
@@ -248,9 +275,127 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "bio-magic",
+    image: "/products/bio-magic.jpg",
     name: "Bio Magic",
     category: "Soil / Granules",
     description: "Organic Carbon product — enriches soil organic carbon for improved biology, structure and long-term fertility.",
     sizes: ["1L"],
+  },
+  {
+    id: "zinc-max",
+    image: "/products/zinc-max.jpg",
+    name: "Zinc Max",
+    category: "Micronutrient",
+    description: "Zinc EDTA 12% chelated micronutrient. Corrects zinc deficiency, improves chlorophyll synthesis and grain/fruit filling.",
+    usage: "1gm per litre water as foliar spray.",
+    sizes: ["250GM", "500GM"],
+  },
+  {
+    id: "boro-plus",
+    image: "/products/boro-plus.jpg",
+    name: "Boro Plus",
+    category: "Micronutrient",
+    description: "Boron 20% formulation supporting flowering, fruit-set and pollen viability across fruiting crops.",
+    sizes: ["250GM", "1KG"],
+  },
+  {
+    id: "ferro-chel",
+    image: "/products/ferro-chel.jpg",
+    name: "Ferro Chel",
+    category: "Micronutrient",
+    description: "Iron EDTA 12% chelate that corrects iron-deficiency chlorosis and restores leaf greening fast.",
+    sizes: ["500GM"],
+  },
+  {
+    id: "bio-nitro",
+    image: "/products/bio-nitro.jpg",
+    name: "Bio Nitro",
+    category: "Bio-Fertilizer",
+    description: "Azotobacter-based nitrogen-fixing bio-fertilizer that improves natural soil nitrogen availability and reduces urea dependency.",
+    usage: "2L per acre via drip or soil drench.",
+    sizes: ["1L", "5L"],
+  },
+  {
+    id: "phospho-rich",
+    image: "/products/phospho-rich.jpg",
+    name: "Phospho Rich",
+    category: "Bio-Fertilizer",
+    description: "Phosphate-solubilizing bacterial consortium that unlocks bound soil phosphorus for better root and flower development.",
+    sizes: ["1L"],
+  },
+  {
+    id: "wet-max",
+    image: "/products/wet-max.jpg",
+    name: "Wet Max",
+    category: "Spreader / Adjuvant",
+    description: "Non-ionic wetting agent and spreader-sticker that improves spray coverage and rainfastness of tank-mix applications.",
+    sizes: ["100ML", "250ML"],
+  },
+  {
+    id: "sticka-bond",
+    image: "/products/sticka-bond.jpg",
+    name: "Sticka Bond",
+    category: "Spreader / Adjuvant",
+    description: "Sticking and penetrating agent improving uptake efficiency of foliar nutrients and crop-protection sprays.",
+    sizes: ["250ML"],
+  },
+  {
+    id: "organa-rich",
+    image: "/products/organa-rich.jpg",
+    name: "Organa Rich",
+    category: "Organic",
+    description: "100% organic plant tonic blended from botanical extracts — boosts natural immunity and vigor without synthetic chemicals.",
+    sizes: ["500ML", "1L"],
+  },
+  {
+    id: "neem-shield",
+    image: "/products/neem-shield.jpg",
+    name: "Neem Shield",
+    category: "Organic",
+    description: "Cold-pressed neem-oil based organic crop tonic that supports plant health alongside natural pest deterrence.",
+    sizes: ["500ML", "1L"],
+  },
+  {
+    id: "amino-power",
+    image: "/products/amino-power.jpg",
+    name: "Amino Power",
+    category: "Amino & Protein",
+    description: "L-Amino Acid 98% concentrate that speeds recovery after stress, transplant shock and adverse weather.",
+    sizes: ["250ML", "500ML"],
+  },
+  {
+    id: "proteo-grow",
+    image: "/products/proteo-grow.jpg",
+    name: "Proteo Grow",
+    category: "Amino & Protein",
+    description: "Plant & animal-derived protein hydrolysate enhancing vegetative growth and fruit quality.",
+    sizes: ["500ML", "1L"],
+  },
+  {
+    id: "fulvo-max",
+    image: "/products/fulvo-max.jpg",
+    name: "Fulvo Max",
+    category: "Humic & Fulvic",
+    description: "High-purity Fulvic Acid 90% liquid that improves nutrient chelation, root mass and stress tolerance.",
+    sizes: ["500ML", "1L"],
+  },
+  {
+    id: "kelpa-boost",
+    image: "/products/kelpa-boost.jpg",
+    name: "Kelpa Boost",
+    category: "Seaweed Extract",
+    description: "Cold-processed kelp seaweed extract rich in natural cytokinins and auxins for flowering and fruit-set boost.",
+    usage: "500ml per acre with adequate water.",
+    sizes: ["500ML", "1L"],
+    badge: "New",
+  },
+  {
+    id: "cane-rich",
+    image: "/products/cane-rich.jpg",
+    name: "Cane Rich",
+    category: "Sugarcane Specialty",
+    description: "Sugarcane-specific PGR + nutrient blend that improves cane length, girth and juice sugar recovery.",
+    usage: "1L per acre in 200L water at tillering stage.",
+    sizes: ["1LTR"],
   },
 ];
