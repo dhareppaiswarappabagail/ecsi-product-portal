@@ -19,7 +19,7 @@ import {
   Play,
   Info,
 } from "lucide-react";
-import logo from "@/assets/ECSi_Logo.jpg";
+import ecsiLogo from "@/assets/ECSI_Logo.jpg";
 import heroFarm from "@/assets/hero-farm.jpg";
 import { PRODUCTS, CATEGORIES, type Category, type Product } from "@/data/products";
 import { waLink, GENERAL_MESSAGE } from "@/lib/whatsapp";
