@@ -107,7 +107,7 @@ function Index() {
       <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-lg">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
           <a href="#home" className="flex items-center gap-3">
-            <img src={logoAsset.url} alt="ECSI Eaglecrop Science Industries logo" className="h-12 w-12 rounded-md object-contain" />
+            <img src={ecsiLogo} alt="ECSI Eaglecrop Science Industries logo" className="h-12 w-12 rounded-md object-contain" />
             <div className="hidden sm:block">
               <div className="font-display text-base font-bold leading-tight text-foreground">EAGLECROP</div>
               <div className="text-[10px] font-medium tracking-widest text-muted-foreground">SCIENCE INDUSTRIES</div>
@@ -167,7 +167,7 @@ function Index() {
               >
                 <X className="h-4 w-4" />
               </button>
-              <img src={logoAsset.url} alt="ECSI" className="h-14 w-14 rounded-lg bg-white p-1.5 object-contain" />
+              <img src={ecsiLogo} alt="ECSI" className="h-14 w-14 rounded-lg bg-white p-1.5 object-contain" />
               <div className="mt-3 font-display text-lg font-bold leading-tight">EAGLECROP</div>
               <div className="text-[10px] tracking-widest opacity-90">SCIENCE INDUSTRIES</div>
             </div>
@@ -239,7 +239,7 @@ function Index() {
         <img src={heroFarm} alt="Lush vineyard and farmland" className="absolute inset-0 -z-10 h-full w-full object-cover" width={1920} height={1080} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(135deg, oklch(0.2 0.02 30 / 0.78), oklch(0.42 0.12 145 / 0.55))" }} />
         <div className="mx-auto flex max-w-5xl flex-col items-center px-4 py-24 text-center text-white md:py-36">
-          <img src={logoAsset.url} alt="ECSI logo" className="mb-6 h-24 w-24 rounded-xl bg-white/95 p-2 shadow-2xl md:h-32 md:w-32" />
+          <img src={ecsiLogo} alt="ECSI logo" className="mb-6 h-24 w-24 rounded-xl bg-white/95 p-2 shadow-2xl md:h-32 md:w-32" />
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-medium backdrop-blur">
             <ShieldCheck className="h-3.5 w-3.5" /> ISO 9001:2015 Certified Manufacturer
           </div>
@@ -281,7 +281,7 @@ function Index() {
               style={{ background: "radial-gradient(circle at 30% 20%, var(--ecsi-orange), transparent 60%), radial-gradient(circle at 80% 80%, var(--ecsi-green), transparent 55%)" }}
             />
             <div className="relative flex h-full min-h-[360px] flex-col items-center justify-center text-center">
-              <img src={logoAsset.url} alt="ECSI" className="mb-6 h-40 w-40 rounded-2xl bg-white p-3 shadow-xl" />
+              <img src={ecsiLogo} alt="ECSI" className="mb-6 h-40 w-40 rounded-2xl bg-white p-3 shadow-xl" />
               <div className="font-display text-xl font-bold text-foreground">A Quality Product</div>
               <div className="mt-1 text-sm text-muted-foreground">Self-manufactured in Maharashtra</div>
             </div>
@@ -513,7 +513,7 @@ function Index() {
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             <div>
               <div className="flex items-center gap-3">
-                <img src={logoAsset.url} alt="ECSI" className="h-14 w-14 object-contain" />
+                <img src={ecsiLogo} alt="ECSI" className="h-14 w-14 object-contain" />
                 <div>
                   <div className="font-display text-base font-bold">EAGLECROP</div>
                   <div className="text-[10px] tracking-widest text-muted-foreground">SCIENCE INDUSTRIES</div>
