@@ -113,14 +113,18 @@ function Index() {
               <div className="text-[10px] font-medium tracking-widest text-muted-foreground">SCIENCE INDUSTRIES</div>
             </div>
           </a>
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {NAV.map((n) => (
               <a key={n.href} href={n.href} className="text-sm font-medium text-foreground/80 transition-colors hover:text-ecsi-orange">
                 {n.label}
               </a>
             ))}
+            <Link to="/videos" className="text-sm font-medium text-foreground/80 transition-colors hover:text-ecsi-orange">
+              {t("nav_videos", lang)}
+            </Link>
           </nav>
           <div className="flex items-center gap-2">
+            <LanguageMenu lang={lang} setLang={setLang} />
             <button
               onClick={toggle}
               aria-label="Toggle theme"
@@ -134,7 +138,7 @@ function Index() {
               rel="noreferrer"
               className="hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform hover:scale-[1.03] md:inline-flex"
             >
-              <WhatsAppIcon className="h-4 w-4" /> Order on WhatsApp
+              <WhatsAppIcon className="h-4 w-4" /> {t("order_wa", lang)}
             </a>
             <button
               onClick={() => setDrawerOpen(true)}
@@ -150,41 +154,82 @@ function Index() {
       {/* MOBILE DRAWER */}
       {drawerOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setDrawerOpen(false)} />
-          <aside className="absolute right-0 top-0 h-full w-[82%] max-w-sm bg-background p-6 shadow-2xl">
-            <div className="mb-6 flex items-center justify-between">
-              <img src={logoAsset.url} alt="ECSI" className="h-12 w-12 object-contain" />
-              <button onClick={() => setDrawerOpen(false)} aria-label="Close menu" className="grid h-10 w-10 place-items-center rounded-full border border-border">
-                <X className="h-5 w-5" />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDrawerOpen(false)} />
+          <aside className="absolute right-0 top-0 h-full w-[85%] max-w-sm overflow-y-auto bg-background shadow-2xl">
+            <div
+              className="relative px-6 pb-6 pt-7 text-white"
+              style={{ background: "linear-gradient(135deg, var(--ecsi-red), var(--ecsi-orange))" }}
+            >
+              <button
+                onClick={() => setDrawerOpen(false)}
+                aria-label="Close menu"
+                className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-white/20 backdrop-blur hover:bg-white/30"
+              >
+                <X className="h-4 w-4" />
               </button>
+              <img src={logoAsset.url} alt="ECSI" className="h-14 w-14 rounded-lg bg-white p-1.5 object-contain" />
+              <div className="mt-3 font-display text-lg font-bold leading-tight">EAGLECROP</div>
+              <div className="text-[10px] tracking-widest opacity-90">SCIENCE INDUSTRIES</div>
             </div>
-            <nav className="flex flex-col gap-1">
-              {NAV.map((n) => (
-                <a
-                  key={n.href}
-                  href={n.href}
+
+            <div className="p-5">
+              <div className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Menu</div>
+              <nav className="flex flex-col">
+                {NAV.map((n) => (
+                  <a
+                    key={n.href}
+                    href={n.href}
+                    onClick={() => setDrawerOpen(false)}
+                    className="flex min-h-[48px] items-center justify-between rounded-lg px-3 text-base font-medium text-foreground hover:bg-secondary"
+                  >
+                    {n.label}
+                    <ChevronDown className="-rotate-90 h-4 w-4 text-muted-foreground" />
+                  </a>
+                ))}
+                <Link
+                  to="/videos"
                   onClick={() => setDrawerOpen(false)}
-                  className="flex min-h-[48px] items-center rounded-lg px-3 text-base font-medium text-foreground hover:bg-secondary"
+                  className="flex min-h-[48px] items-center justify-between rounded-lg px-3 text-base font-medium text-foreground hover:bg-secondary"
                 >
-                  {n.label}
-                </a>
-              ))}
-            </nav>
-            <button
-              onClick={toggle}
-              className="mt-6 flex w-full items-center justify-between rounded-lg border border-border px-4 py-3 text-sm font-medium"
-            >
-              <span>Theme</span>
-              {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-            </button>
-            <a
-              href={waLink(GENERAL_MESSAGE)}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 text-base font-semibold text-white"
-            >
-              <WhatsAppIcon className="h-5 w-5" /> Order via WhatsApp
-            </a>
+                  <span className="inline-flex items-center gap-2"><Play className="h-4 w-4 text-ecsi-red" /> {t("nav_videos", lang)}</span>
+                  <ChevronDown className="-rotate-90 h-4 w-4 text-muted-foreground" />
+                </Link>
+              </nav>
+
+              <div className="mt-6 space-y-2">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{t("language", lang)}</div>
+                <div className="flex gap-2">
+                  {(["en", "hi", "mr"] as Lang[]).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setLang(l)}
+                      className={`flex-1 rounded-lg border px-2 py-2 text-xs font-semibold transition-all ${
+                        lang === l ? "border-ecsi-red bg-ecsi-red text-white" : "border-border bg-background"
+                      }`}
+                    >
+                      {LANG_LABEL[l]}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={toggle}
+                className="mt-4 flex w-full items-center justify-between rounded-lg border border-border px-4 py-3 text-sm font-medium"
+              >
+                <span>{t("theme", lang)}</span>
+                {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+              </button>
+
+              <a
+                href={waLink(GENERAL_MESSAGE)}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 text-base font-semibold text-white shadow-lg"
+              >
+                <WhatsAppIcon className="h-5 w-5" /> {t("order_wa", lang)}
+              </a>
+            </div>
           </aside>
         </div>
       )}
