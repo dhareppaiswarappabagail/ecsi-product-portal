@@ -14,7 +14,7 @@ import {
   Mail,
   Phone,
   ChevronDown,
-  Package,
+  ChevronDown,
   Globe,
   Play,
   Info,
