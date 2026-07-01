@@ -148,3 +148,27 @@
   50% { box-shadow: 0 0 0 14px oklch(0.68 0.18 145 / 0); }
 }
 .wa-pulse { animation: wa-pulse 2s ease-out infinite; }
+
+@keyframes ecsi-blink {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.62 0.22 25 / 0.7); transform: scale(1); }
+  50% { box-shadow: 0 0 0 14px oklch(0.62 0.22 25 / 0); transform: scale(1.04); }
+}
+.ecsi-blink { animation: ecsi-blink 1.6s ease-out infinite; }
+
+@keyframes ecsi-marquee {
+  0% { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(-50%,0,0); }
+}
+.ecsi-marquee-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: ecsi-marquee linear infinite;
+  will-change: transform;
+}
+.ecsi-marquee-track:hover { animation-play-state: paused; }
+.ecsi-marquee-mask {
+  mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+
