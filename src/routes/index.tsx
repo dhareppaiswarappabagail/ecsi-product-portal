@@ -105,12 +105,10 @@ function Index() {
     [activeCategory, sortedProducts],
   );
 
-  // Deterministic image URL derived from product id + description slug — a
-  // description edit gives the product a fresh picture too.
-  const imgFor = (p: Product) => {
-    const slug = p.description.slice(0, 24).replace(/\W+/g, "-").toLowerCase();
-    return `https://picsum.photos/seed/${p.id}-${slug}/480/480`;
-  };
+  // Real product photo if one has been uploaded to /public/products,
+  // otherwise fall back to the branded ECSI placeholder (handled by the
+  // <img onError> below when the file 404s).
+  const imgFor = (p: Product) => p.image || IMAGE_FALLBACK;
 
   // Split first 40 sorted products into 4 marquee rows of 10.
   const marqueeRows = useMemo(() => {
