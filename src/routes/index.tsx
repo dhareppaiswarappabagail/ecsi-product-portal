@@ -95,10 +95,30 @@ function Index() {
     { href: "#contact", label: t("nav_contact", lang) },
   ];
 
-  const filtered = useMemo(
-    () => (activeCategory === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.category === activeCategory)),
-    [activeCategory],
+  // Products ordered automatically by their description text — changing a
+  // description in src/data/products.ts will re-sort this list on next render.
+  const sortedProducts = useMemo(
+    () => [...PRODUCTS].sort((a, b) => a.description.localeCompare(b.description)),
+    [],
   );
+  const filtered = useMemo(
+    () => (activeCategory === "All" ? sortedProducts : sortedProducts.filter((p) => p.category === activeCategory)),
+    [activeCategory, sortedProducts],
+  );
+
+  // Deterministic image URL derived from product id + description slug — a
+  // description edit gives the product a fresh picture too.
+  const imgFor = (p: Product) => {
+    const slug = p.description.slice(0, 24).replace(/\W+/g, "-").toLowerCase();
+    return `https://picsum.photos/seed/${p.id}-${slug}/480/480`;
+  };
+
+  // Split first 40 sorted products into 4 marquee rows of 10.
+  const marqueeRows = useMemo(() => {
+    const list = sortedProducts.slice(0, 40);
+    return [0, 1, 2, 3].map((i) => list.slice(i * 10, i * 10 + 10));
+  }, [sortedProducts]);
+
 
 
   return (
