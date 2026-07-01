@@ -377,21 +377,24 @@ function Index() {
                 <button
                   type="button"
                   onClick={() => setModalProduct(p)}
-                  className="relative grid h-44 place-items-center overflow-hidden text-left"
+                  className="group/img relative block aspect-square w-full overflow-hidden text-left"
                   style={{ background: "linear-gradient(135deg, var(--ecsi-green), oklch(0.32 0.08 145))" }}
                 >
-                  <div
-                    className="absolute inset-0 opacity-40"
-                    style={{ background: "radial-gradient(circle at 70% 30%, var(--ecsi-orange), transparent 55%)" }}
+                  <img
+                    src={imgFor(p)}
+                    alt={p.name}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
                   />
-                  <div className="relative flex flex-col items-center text-white">
-                    <Package className="h-12 w-12 opacity-90" strokeWidth={1.5} />
-                    <div className="mt-2 px-3 text-center font-display text-lg font-bold leading-tight">{p.name}</div>
-                  </div>
-                  <div className="absolute bottom-2 left-2 rounded-full bg-black/35 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur">
-                    {p.category}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-3">
+                    <div className="font-display text-base font-bold leading-tight text-white drop-shadow">{p.name}</div>
+                    <div className="rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-semibold text-ecsi-green backdrop-blur">
+                      {p.category}
+                    </div>
                   </div>
                 </button>
+
 
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="font-display text-lg font-bold leading-tight">{p.name}</h3>
