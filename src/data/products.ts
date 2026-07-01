@@ -74,7 +74,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "prime-plus",
-    image: "/products/prime-plus.jpg",
+    image: "/products/Prime+.jpg",
     name: "Prime Plus",
     category: "Foliar Spray",
     description: "Silicon 60% + Amino Acid 40% foliar formulation for every crop and every stage. Strengthens cell walls and improves stress tolerance.",
@@ -129,7 +129,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "psp-99",
-    image: "/products/psp-99.jpg",
+    image: "/products/PSP-99.jpg",
     name: "PSP 99",
     category: "Foliar Spray",
     description: "Specialty foliar nutrition for vegetable crops supporting plant vigor and leaf health.",
@@ -146,7 +146,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "lemore",
-    image: "/products/lemore.jpg",
+    image: "/products/Lemope.jpg",
     name: "Lemore",
     category: "PGR",
     description: "Growth enhancer that increases chlorophyll, flower count, fruit-set %, yield, color and aroma. For all crop types.",
@@ -165,7 +165,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "biotin",
-    image: "/products/biotin.jpg",
+    image: "/products/BIOTIN.jpg",
     name: "Biotin",
     category: "Grape Specialty",
     description: "Specialty grape growth-stage product for fruit-setting support after pruning.",
@@ -182,7 +182,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "milan-sudo",
-    image: "/products/milan-sudo.jpg",
+    image: "/products/Milan.jpg",
     name: "Milan Sudo",
     category: "Microbial",
     description: "Pseudomonas Fluorescens 0.5% WP — biological agent supporting plant health and suppressing soil-borne pathogens.",
@@ -191,7 +191,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "milan-trycho",
-    image: "/products/milan-trycho.jpg",
+    image: "/products/Milan-.jpg",
     name: "Milan Trycho",
     category: "Microbial",
     description: "Trichoderma Viride bio-fungicide and natural root health enhancer.",
@@ -209,7 +209,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "quick-sugar",
-    image: "/products/quick-sugar.jpg",
+    image: "/products/Quick-Sugar.jpg",
     name: "Quick Sugar",
     category: "Grape Specialty",
     description: "Grape sugar-enhancement product to boost bunch sugar content.",
@@ -237,7 +237,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "super-shot",
-    image: "/products/super-shot.jpg",
+    image: "/products/Super-Shot.jpg",
     name: "Super Shot",
     category: "Foliar Spray",
     description: "Silicone spreader-activator for better tank-mix performance of weedicides, insecticides, fungicides, PGRs and pesticides.",
@@ -254,7 +254,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "nova-gold",
-    image: "/products/nova-gold.jpg",
+    image: "/products/Nova-Gold.jpg",
     name: "Nova Gold",
     category: "Humic & Fulvic",
     description: "Fulvic Acid formulation — nutrient chelation and improved micronutrient uptake.",
@@ -281,7 +281,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "bio-magic",
-    image: "/products/bio-magic.jpg",
+    image: "/products/Bio-Magic.jpg",
     name: "Bio Magic",
     category: "Soil / Granules",
     description: "Organic Carbon product — enriches soil organic carbon for improved biology, structure and long-term fertility.",
@@ -398,7 +398,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "white-gold",
-    image: "/products/white-gold.jpg",
+    image: "/products/White-Gold.jpg",
     name: "White Gold",
     category: "Foliar Spray",
     description: "Foliar growth formulation supporting vegetative, flowering and fruiting stages for healthier, more productive crops.",
@@ -407,7 +407,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "bioclin",
-    image: "/products/bioclin.jpg",
+    image: "/products/Bioclin.jpg",
     name: "Bioclin",
     category: "Foliar Spray",
     description: "Bio-based foliar tonic for consistent, healthy crop growth across the season.",
@@ -416,7 +416,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "neem-10000",
-    image: "/products/neem-10000.jpg",
+    image: "/products/Neem-10000.jpg",
     name: "Neem 10000",
     category: "Organic",
     description: "High-concentration neem-based organic foliar tonic supporting plant health with natural pest deterrence.",
