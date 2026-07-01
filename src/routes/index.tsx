@@ -217,6 +217,32 @@ function Index() {
               </nav>
 
               <div className="mt-6 space-y-2">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Shop by Category</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {CATEGORIES.slice(0, 8).map((c) => (
+                    <a
+                      key={c}
+                      href="#products"
+                      onClick={() => { setActiveCategory(c); setDrawerOpen(false); }}
+                      className="rounded-full border border-border bg-background px-3 py-1.5 text-[11px] font-semibold text-foreground/80 hover:border-ecsi-orange hover:text-ecsi-orange"
+                    >
+                      {c}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-2">
+                <a href="tel:+919999999999" className="flex items-center justify-center gap-2 rounded-lg border border-border px-3 py-2.5 text-xs font-semibold text-foreground/80 hover:border-ecsi-green hover:text-ecsi-green">
+                  <Phone className="h-3.5 w-3.5" /> Call
+                </a>
+                <a href="mailto:info@eaglecrop.in" className="flex items-center justify-center gap-2 rounded-lg border border-border px-3 py-2.5 text-xs font-semibold text-foreground/80 hover:border-ecsi-orange hover:text-ecsi-orange">
+                  <Mail className="h-3.5 w-3.5" /> Email
+                </a>
+              </div>
+
+
+              <div className="mt-6 space-y-2">
                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{t("language", lang)}</div>
                 <div className="flex gap-2">
                   {(["en", "hi", "mr"] as Lang[]).map((l) => (
