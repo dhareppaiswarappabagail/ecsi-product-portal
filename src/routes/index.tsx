@@ -21,7 +21,7 @@ import {
 import logoAsset from "@/assets/ECSi_Logo.jpg";
 import heroFarm from "@/assets/hero-farm.jpg";
 import { PRODUCTS, CATEGORIES, type Category, type Product } from "@/data/products";
-import { waLink, GENERAL_MESSAGE } from "@/lib/whatsapp";
+import { waLink, GENERAL_MESSAGE, IMAGE_FALLBACK } from "@/lib/whatsapp";
 import { useTheme } from "@/hooks/use-theme";
 import { useLanguage, type Lang } from "@/hooks/use-language";
 import { t, LANG_LABEL } from "@/lib/i18n";
@@ -359,7 +359,7 @@ function Index() {
       </section>
 
       {/* PRODUCTS */}
-      <section id="products" className="bg-secondary/40 py-20 md:py-28">
+      <section id="products" className="scroll-mt-24 bg-secondary/40 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-10 text-center">
             <div className="mb-3 text-sm font-semibold uppercase tracking-widest text-ecsi-orange">Our Product Range</div>
@@ -388,6 +388,10 @@ function Index() {
                       src={imgFor(p)}
                       alt={p.name}
                       loading="lazy"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (img.src !== IMAGE_FALLBACK) img.src = IMAGE_FALLBACK;
+                      }}
                       className="h-14 w-14 shrink-0 rounded-lg object-cover"
                     />
                     <div className="min-w-0">
@@ -442,6 +446,10 @@ function Index() {
                     src={imgFor(p)}
                     alt={p.name}
                     loading="lazy"
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      if (img.src !== IMAGE_FALLBACK) img.src = IMAGE_FALLBACK;
+                    }}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />

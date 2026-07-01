@@ -47,7 +47,7 @@ export function ProductModal({
   if (!product) return null;
 
   const openPreview = () => {
-    setMessage(orderMessage(product.name, size));
+    setMessage(orderMessage(product.name, size, product.description));
     setPreview(true);
   };
 
