@@ -344,6 +344,39 @@ function Index() {
             </p>
           </div>
 
+          {/* AUTO-SCROLLING PRODUCT MARQUEE — 4 rows × 10 products, hover to pause, drag to scroll manually */}
+          <div className="ecsi-marquee-mask mb-12 space-y-3 overflow-hidden">
+            {marqueeRows.map((row, i) => (
+              <div
+                key={i}
+                className="ecsi-marquee-track"
+                style={{ animationDuration: `${38 + i * 6}s`, animationDirection: i % 2 ? "reverse" : "normal" }}
+              >
+                {[...row, ...row].map((p, idx) => (
+                  <button
+                    key={`${p.id}-${idx}`}
+                    type="button"
+                    onClick={() => setModalProduct(p)}
+                    className="group relative flex w-56 shrink-0 items-center gap-3 rounded-xl border border-border bg-card p-2 pr-4 text-left shadow-card transition-transform hover:-translate-y-0.5"
+                  >
+                    <img
+                      src={imgFor(p)}
+                      alt={p.name}
+                      loading="lazy"
+                      className="h-14 w-14 shrink-0 rounded-lg object-cover"
+                    />
+                    <div className="min-w-0">
+                      <div className="truncate font-display text-sm font-bold text-foreground">{p.name}</div>
+                      <div className="truncate text-[11px] text-muted-foreground">{p.category}</div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
+
+
+
           <div className="mb-10 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {(["All", ...CATEGORIES] as const).map((c) => {
               const active = activeCategory === c;
