@@ -14,7 +14,6 @@ import {
   Mail,
   Phone,
   ChevronDown,
-  Package,
   Globe,
   Play,
   Info,
@@ -95,10 +94,30 @@ function Index() {
     { href: "#contact", label: t("nav_contact", lang) },
   ];
 
-  const filtered = useMemo(
-    () => (activeCategory === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.category === activeCategory)),
-    [activeCategory],
+  // Products ordered automatically by their description text — changing a
+  // description in src/data/products.ts will re-sort this list on next render.
+  const sortedProducts = useMemo(
+    () => [...PRODUCTS].sort((a, b) => a.description.localeCompare(b.description)),
+    [],
   );
+  const filtered = useMemo(
+    () => (activeCategory === "All" ? sortedProducts : sortedProducts.filter((p) => p.category === activeCategory)),
+    [activeCategory, sortedProducts],
+  );
+
+  // Deterministic image URL derived from product id + description slug — a
+  // description edit gives the product a fresh picture too.
+  const imgFor = (p: Product) => {
+    const slug = p.description.slice(0, 24).replace(/\W+/g, "-").toLowerCase();
+    return `https://picsum.photos/seed/${p.id}-${slug}/480/480`;
+  };
+
+  // Split first 40 sorted products into 4 marquee rows of 10.
+  const marqueeRows = useMemo(() => {
+    const list = sortedProducts.slice(0, 40);
+    return [0, 1, 2, 3].map((i) => list.slice(i * 10, i * 10 + 10));
+  }, [sortedProducts]);
+
 
 
   return (
@@ -197,6 +216,32 @@ function Index() {
               </nav>
 
               <div className="mt-6 space-y-2">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Shop by Category</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {CATEGORIES.slice(0, 8).map((c) => (
+                    <a
+                      key={c}
+                      href="#products"
+                      onClick={() => { setActiveCategory(c); setDrawerOpen(false); }}
+                      className="rounded-full border border-border bg-background px-3 py-1.5 text-[11px] font-semibold text-foreground/80 hover:border-ecsi-orange hover:text-ecsi-orange"
+                    >
+                      {c}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-2">
+                <a href="tel:+919999999999" className="flex items-center justify-center gap-2 rounded-lg border border-border px-3 py-2.5 text-xs font-semibold text-foreground/80 hover:border-ecsi-green hover:text-ecsi-green">
+                  <Phone className="h-3.5 w-3.5" /> Call
+                </a>
+                <a href="mailto:info@eaglecrop.in" className="flex items-center justify-center gap-2 rounded-lg border border-border px-3 py-2.5 text-xs font-semibold text-foreground/80 hover:border-ecsi-orange hover:text-ecsi-orange">
+                  <Mail className="h-3.5 w-3.5" /> Email
+                </a>
+              </div>
+
+
+              <div className="mt-6 space-y-2">
                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{t("language", lang)}</div>
                 <div className="flex gap-2">
                   {(["en", "hi", "mr"] as Lang[]).map((l) => (
@@ -253,7 +298,7 @@ function Index() {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
               href="#products"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-ecsi-red px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-[1.04]"
+              className="ecsi-blink inline-flex items-center justify-center gap-2 rounded-full bg-ecsi-red px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-[1.04]"
             >
               <Leaf className="h-4 w-4" /> View Products
             </a>
@@ -266,6 +311,7 @@ function Index() {
               <WhatsAppIcon className="h-4 w-4" /> Order on WhatsApp
             </a>
           </div>
+
           <a href="#about" aria-label="Scroll down" className="mt-16 animate-bounce text-white/70">
             <ChevronDown className="h-7 w-7" />
           </a>
@@ -323,6 +369,39 @@ function Index() {
             </p>
           </div>
 
+          {/* AUTO-SCROLLING PRODUCT MARQUEE — 4 rows × 10 products, hover to pause, drag to scroll manually */}
+          <div className="ecsi-marquee-mask mb-12 space-y-3 overflow-hidden">
+            {marqueeRows.map((row, i) => (
+              <div
+                key={i}
+                className="ecsi-marquee-track"
+                style={{ animationDuration: `${38 + i * 6}s`, animationDirection: i % 2 ? "reverse" : "normal" }}
+              >
+                {[...row, ...row].map((p, idx) => (
+                  <button
+                    key={`${p.id}-${idx}`}
+                    type="button"
+                    onClick={() => setModalProduct(p)}
+                    className="group relative flex w-56 shrink-0 items-center gap-3 rounded-xl border border-border bg-card p-2 pr-4 text-left shadow-card transition-transform hover:-translate-y-0.5"
+                  >
+                    <img
+                      src={imgFor(p)}
+                      alt={p.name}
+                      loading="lazy"
+                      className="h-14 w-14 shrink-0 rounded-lg object-cover"
+                    />
+                    <div className="min-w-0">
+                      <div className="truncate font-display text-sm font-bold text-foreground">{p.name}</div>
+                      <div className="truncate text-[11px] text-muted-foreground">{p.category}</div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
+
+
+
           <div className="mb-10 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {(["All", ...CATEGORIES] as const).map((c) => {
               const active = activeCategory === c;
@@ -356,21 +435,24 @@ function Index() {
                 <button
                   type="button"
                   onClick={() => setModalProduct(p)}
-                  className="relative grid h-44 place-items-center overflow-hidden text-left"
+                  className="group/img relative block aspect-square w-full overflow-hidden text-left"
                   style={{ background: "linear-gradient(135deg, var(--ecsi-green), oklch(0.32 0.08 145))" }}
                 >
-                  <div
-                    className="absolute inset-0 opacity-40"
-                    style={{ background: "radial-gradient(circle at 70% 30%, var(--ecsi-orange), transparent 55%)" }}
+                  <img
+                    src={imgFor(p)}
+                    alt={p.name}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
                   />
-                  <div className="relative flex flex-col items-center text-white">
-                    <Package className="h-12 w-12 opacity-90" strokeWidth={1.5} />
-                    <div className="mt-2 px-3 text-center font-display text-lg font-bold leading-tight">{p.name}</div>
-                  </div>
-                  <div className="absolute bottom-2 left-2 rounded-full bg-black/35 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur">
-                    {p.category}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-3">
+                    <div className="font-display text-base font-bold leading-tight text-white drop-shadow">{p.name}</div>
+                    <div className="rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-semibold text-ecsi-green backdrop-blur">
+                      {p.category}
+                    </div>
                   </div>
                 </button>
+
 
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="font-display text-lg font-bold leading-tight">{p.name}</h3>
