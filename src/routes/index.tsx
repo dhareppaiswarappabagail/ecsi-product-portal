@@ -273,7 +273,7 @@ function Index() {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
               href="#products"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-ecsi-red px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-[1.04]"
+              className="ecsi-blink inline-flex items-center justify-center gap-2 rounded-full bg-ecsi-red px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-[1.04]"
             >
               <Leaf className="h-4 w-4" /> View Products
             </a>
@@ -286,6 +286,7 @@ function Index() {
               <WhatsAppIcon className="h-4 w-4" /> Order on WhatsApp
             </a>
           </div>
+
           <a href="#about" aria-label="Scroll down" className="mt-16 animate-bounce text-white/70">
             <ChevronDown className="h-7 w-7" />
           </a>
