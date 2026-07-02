@@ -78,17 +78,77 @@ export function ProductModal({
         {!preview ? (
           <div>
             <div
-              className="relative h-44 rounded-t-3xl"
+              className="relative rounded-t-3xl"
               style={{ background: "linear-gradient(135deg, var(--ecsi-green), oklch(0.32 0.08 145))" }}
             >
               <div
-                className="absolute inset-0 rounded-t-3xl opacity-40"
+                className="pointer-events-none absolute inset-0 rounded-t-3xl opacity-40"
                 style={{ background: "radial-gradient(circle at 70% 30%, var(--ecsi-orange), transparent 55%)" }}
               />
-              <div className="relative flex h-full flex-col items-center justify-center text-white">
-                <div className="font-display text-3xl font-bold">{product.name}</div>
-                <div className="mt-1 text-xs uppercase tracking-widest opacity-80">{product.category}</div>
-              </div>
+              {gallery.length > 0 ? (
+                <div className="relative">
+                  <div className="relative flex h-64 items-center justify-center overflow-hidden rounded-t-3xl sm:h-80">
+                    <img
+                      src={gallery[imgIdx]}
+                      alt={`${product.name} — image ${imgIdx + 1}`}
+                      className="h-full w-full object-contain p-4"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = IMAGE_FALLBACK;
+                      }}
+                    />
+                    {gallery.length > 1 && (
+                      <>
+                        <button
+                          onClick={() => setImgIdx((i) => (i - 1 + gallery.length) % gallery.length)}
+                          aria-label="Previous image"
+                          className="absolute left-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-background/80 backdrop-blur hover:bg-background"
+                        >
+                          <ChevronLeft className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => setImgIdx((i) => (i + 1) % gallery.length)}
+                          aria-label="Next image"
+                          className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-background/80 backdrop-blur hover:bg-background"
+                        >
+                          <ChevronRight className="h-4 w-4" />
+                        </button>
+                      </>
+                    )}
+                  </div>
+                  <div className="relative border-t border-white/20 bg-black/20 px-4 py-3 text-white">
+                    <div className="font-display text-xl font-bold">{product.name}</div>
+                    <div className="text-[10px] uppercase tracking-widest opacity-80">{product.category}</div>
+                  </div>
+                  {gallery.length > 1 && (
+                    <div className="flex justify-center gap-2 bg-background/60 px-4 py-3">
+                      {gallery.map((src, i) => (
+                        <button
+                          key={src + i}
+                          onClick={() => setImgIdx(i)}
+                          aria-label={`Show image ${i + 1}`}
+                          className={`h-14 w-14 overflow-hidden rounded-lg border-2 transition-all ${
+                            i === imgIdx ? "border-ecsi-orange" : "border-transparent opacity-60 hover:opacity-100"
+                          }`}
+                        >
+                          <img
+                            src={src}
+                            alt=""
+                            className="h-full w-full object-cover"
+                            onError={(e) => {
+                              (e.currentTarget as HTMLImageElement).src = IMAGE_FALLBACK;
+                            }}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="relative flex h-44 flex-col items-center justify-center text-white">
+                  <div className="font-display text-3xl font-bold">{product.name}</div>
+                  <div className="mt-1 text-xs uppercase tracking-widest opacity-80">{product.category}</div>
+                </div>
+              )}
             </div>
 
             <div className="p-6">
