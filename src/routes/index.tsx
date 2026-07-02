@@ -282,7 +282,7 @@ function Index() {
         <img src={heroFarm} alt="Lush vineyard and farmland" className="absolute inset-0 -z-10 h-full w-full object-cover" width={1920} height={1080} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(135deg, oklch(0.2 0.02 30 / 0.78), oklch(0.42 0.12 145 / 0.55))" }} />
         <div className="mx-auto flex max-w-5xl flex-col items-center px-4 py-24 text-center text-white md:py-36">
-          <img src={logoAsset} alt="ECSI logo" className="mb-6 h-36 w-36 rounded-xl bg-white/95 p-2 shadow-2xl md:h-48 md:w-48" />
+          <img src={logoAsset} alt="ECSI logo" className="mb-6 h-40 w-40 rounded-xl bg-white/95 p-3 shadow-2xl md:h-64 md:w-64" />
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-medium backdrop-blur">
             <ShieldCheck className="h-3.5 w-3.5" /> ISO 9001:2015 Certified Manufacturer
           </div>
