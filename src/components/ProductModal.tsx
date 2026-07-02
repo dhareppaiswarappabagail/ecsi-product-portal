@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { X, ChevronRight, Edit3 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { X, ChevronRight, Edit3, ChevronLeft } from "lucide-react";
 import type { Product } from "@/data/products";
-import { waLink, orderMessage } from "@/lib/whatsapp";
+import { waLink, orderMessage, IMAGE_FALLBACK } from "@/lib/whatsapp";
 import { t } from "@/lib/i18n";
 import type { Lang } from "@/hooks/use-language";
 
@@ -25,11 +25,23 @@ export function ProductModal({
   const [size, setSize] = useState<string>("");
   const [preview, setPreview] = useState(false);
   const [message, setMessage] = useState("");
+  const [imgIdx, setImgIdx] = useState(0);
+
+  const gallery = useMemo(() => {
+    if (!product) return [] as string[];
+    const list = product.images && product.images.length > 0
+      ? product.images
+      : product.image
+        ? [product.image]
+        : [];
+    return list.slice(0, 4);
+  }, [product]);
 
   useEffect(() => {
     if (product) {
       setSize(product.sizes[0] ?? "");
       setPreview(false);
+      setImgIdx(0);
     }
   }, [product]);
 
