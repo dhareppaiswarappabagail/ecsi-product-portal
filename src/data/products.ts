@@ -1,6 +1,10 @@
 export type Product = {
   id: string;
+  /** Primary thumbnail image (used on cards & marquee). */
   image?: string;
+  /** Optional gallery — up to 4 images shown in the product modal.
+   *  If omitted, the modal falls back to `image` only. */
+  images?: string[];
   name: string;
   nameMr?: string;
   nameHi?: string;
