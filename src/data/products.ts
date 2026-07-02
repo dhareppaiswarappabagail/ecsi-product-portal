@@ -155,7 +155,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "lemore",
-    image: "/products/Lemope.jpg",
+    image: "/products/Lemopea.jpg",
     name: "Lemore",
     category: "PGR",
     description: "A liquid growth enhancer developed for grapes, tomatoes, brinjal, okra, beans, leafy vegetables, and other crops. It supports vegetative growth and overall plant development.",
