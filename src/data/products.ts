@@ -192,7 +192,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "milan-sudo",
-    image: "/products/Milan.jpg",
+    image: "/products/Milann.jpg",
     name: "Milan – Pseudomonas Fluorescens 0.5 WP",
     category: "Microbial",
     description: "A beneficial microbial bio-product containing Pseudomonas fluorescens. It supports root health, promotes beneficial soil activity, and helps protect crops from certain soil- and root-associated diseases.",
