@@ -125,7 +125,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "nano-gel",
-    image: "/products/nano-gel.jpg",
+    image: "/products/nanoo-gel.jpg",
     name: "Nano Gel",
     nameMr: "नॅनो जेल",
     category: "PGR",
