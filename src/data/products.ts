@@ -58,6 +58,7 @@ export const PRODUCTS: Product[] = [
     description: "A Potassium Humate 98% soil conditioner formulated to improve soil structure, stimulate root development, increase nutrient uptake, and support healthy plant growth.",
     usage: "Apply through soil, irrigation, or drip systems. The exact dosage is not stated in the catalogue; follow the product label or an agricultural expert's recommendation.",
     sizes: ["1KG"],
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "dharti-gold",
@@ -69,6 +70,7 @@ export const PRODUCTS: Product[] = [
     usage: "Apply directly to the soil during land preparation or around the crop root zone. Exact per-acre dosage is not stated in the catalogue.",
     sizes: ["25KG"],
     badge: "Best Seller",
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "dharati-ratn",
@@ -78,6 +80,7 @@ export const PRODUCTS: Product[] = [
     description: "A granular soil nutrition and conditioning product suitable for vegetables, grapes, sugarcane, fruit crops, and other agricultural crops. It supports root growth and overall crop development.",
     usage: "Use as a soil application during land preparation, planting, or crop development. Exact dosage is not stated in the catalogue.",
     sizes: ["10KG Bag"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "prime-plus",
@@ -87,6 +90,7 @@ export const PRODUCTS: Product[] = [
     description: "A foliar nutrition product based on a Silicon 60 and Amino 40 formulation. It helps strengthen leaves, improve plant vigour, and support healthy crop development.",
     usage: "Mix with water and apply as a foliar spray. The exact mixing dose is not mentioned in the catalogue; use according to the label.",
     sizes: ["100GM", "250GM", "500GM"],
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "can-master",
@@ -96,6 +100,7 @@ export const PRODUCTS: Product[] = [
     description: "A specialised grape plant and fruit growth promoter designed for use after April pruning. It supports fertilisation, fruit setting, and bunch formation.",
     usage: "80 g per acre, applied around the 35th and 45th day after pruning. Mix with approximately 200 litres of water.",
     sizes: ["500ML"],
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "aprilia",
@@ -105,6 +110,7 @@ export const PRODUCTS: Product[] = [
     description: "A mixed micronutrient formulation developed to provide essential nutrients to crops and support balanced growth, healthier leaves, flowering, and crop productivity.",
     usage: "Mix 3 kg in 200 litres of water and apply over 1 acre.",
     sizes: ["3KG"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "plant-bro",
@@ -115,6 +121,7 @@ export const PRODUCTS: Product[] = [
     description: "A liquid plant and soil growth promoter that helps make leaves greener, strengthens plants, increases the number of healthy white roots, and improves soil looseness.",
     usage: "Apply 5 litres per acre through soil, irrigation, or the recommended application method.",
     sizes: ["5LTR"],
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "nano-gel",
@@ -125,6 +132,7 @@ export const PRODUCTS: Product[] = [
     description: "A gel-technology-based plant biostimulant that supports seed germination, flowering, natural plant-growth-hormone activity, enzyme activity, fruit setting, and root development.",
     usage: "Apply 500 g per acre through the drip irrigation system.",
     sizes: ["250GM", "500GM"],
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "shoot-out",
@@ -134,6 +142,7 @@ export const PRODUCTS: Product[] = [
     description: "A plant growth regulator formulated to support crop growth, bud development, plant vigour, and recovery during important growth stages.",
     usage: "Apply as a foliar spray according to the crop stage and product label. The exact dosage is not stated in the catalogue.",
     sizes: ["500ML"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "psp-99",
@@ -143,6 +152,7 @@ export const PRODUCTS: Product[] = [
     description: "An agricultural crop-growth and nutrition product intended to support healthy leaf development, plant vigour, and the growth of vegetable and horticultural crops.",
     usage: "Apply through foliar spray, soil, or irrigation as directed on the product label. Exact dosage is not provided in the catalogue.",
     sizes: ["1KG"],
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "6-ba",
@@ -152,6 +162,7 @@ export const PRODUCTS: Product[] = [
     description: "A cytokinin-based plant growth regulator that supports cell division, shoot and bud development, flowering, fruit setting, and fruit growth.",
     usage: "Dilute and apply as a foliar spray only at the recommended crop stage. The exact dosage is not stated in the catalogue and should be taken from the product label.",
     sizes: ["10ml x 5 Nos"],
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "lemore",
@@ -161,6 +172,7 @@ export const PRODUCTS: Product[] = [
     description: "A liquid growth enhancer developed for grapes, tomatoes, brinjal, okra, beans, leafy vegetables, and other crops. It supports vegetative growth and overall plant development.",
     usage: "Apply as a foliar spray after dilution with water. Exact dosage and spray interval are not stated in the catalogue.",
     sizes: ["250ML", "500ML", "1LTR"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "green-gold",
@@ -171,6 +183,7 @@ export const PRODUCTS: Product[] = [
     usage: "Apply as a foliar spray or through irrigation according to the product label. The exact dosage is not given in the catalogue.",
     sizes: ["1L", "500ML", "250ML", "100ML"],
     badge: "Premium",
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "biotin",
@@ -180,6 +193,7 @@ export const PRODUCTS: Product[] = [
     description: "A fruit-setting promoter designed to support flowering, setting, and early fruit development, particularly in crops managed after pruning.",
     usage: "After pruning, apply 2 ml with GA on the 35th day for setting, followed by 2 ml on the 38th day. Use the recommended quantity of water stated on the label.",
     sizes: ["1L"],
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "achieva-plus",
@@ -189,6 +203,7 @@ export const PRODUCTS: Product[] = [
     description: "An organic plant growth promoter formulated to encourage healthy crop growth, vegetative development, flowering, fruit development, and improved crop quality.",
     usage: "Dilute with water and apply as a foliar spray according to crop requirements. Exact dosage is not mentioned in the catalogue.",
     sizes: ["50ML", "100ML"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "milan-sudo",
@@ -198,6 +213,7 @@ export const PRODUCTS: Product[] = [
     description: "A beneficial microbial bio-product containing Pseudomonas fluorescens. It supports root health, promotes beneficial soil activity, and helps protect crops from certain soil- and root-associated diseases.",
     usage: "Use for seed treatment, soil application, root treatment, or drip application according to the product label. Exact dosage is not stated in the catalogue.",
     sizes: ["1KG"],
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "milan-trycho",
@@ -207,6 +223,7 @@ export const PRODUCTS: Product[] = [
     description: "A biological crop-protection product containing Trichoderma viride. It helps suppress several soil-borne fungal problems, protects roots, and improves beneficial microbial activity in the soil.",
     usage: "Use for seed treatment, nursery treatment, soil application, or root-zone application according to label instructions. Exact dosage is not stated in the catalogue.",
     sizes: ["1KG"],
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "quick-sugar",
@@ -216,6 +233,7 @@ export const PRODUCTS: Product[] = [
     description: "A crop-maturity and sugar-enhancing product developed mainly for grapes. It helps improve sugar accumulation, maturity, colour development, taste, and overall fruit quality.",
     usage: "Apply 1 litre on the 80th day, 1 litre on the 90th day, and 1 litre on the 100th day after pruning, as indicated in the catalogue.",
     sizes: ["1L"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "eg-long-40",
@@ -226,6 +244,7 @@ export const PRODUCTS: Product[] = [
     usage: "Apply during the recommended grape-development stage as a properly diluted spray. Exact dosage is not stated in the catalogue.",
     sizes: ["500ML", "1LTR", "5LTR"],
     badge: "Best Seller",
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "g2",
@@ -235,6 +254,7 @@ export const PRODUCTS: Product[] = [
     description: "A sugarcane growth promoter designed to improve the dark-green appearance of the crop, increase tillering, support internode elongation, and develop broader and larger leaves.",
     usage: "Mix 100 ml in 15 litres of water and spray uniformly over the crop.",
     sizes: ["Standard Pack"],
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "super-shot",
@@ -244,6 +264,7 @@ export const PRODUCTS: Product[] = [
     description: "A silicone spreader and spray activator that improves the spreading, wetting, coverage, and utilisation of weedicides, insecticides, fungicides, plant growth regulators, and pesticides.",
     usage: "Add to the spray tank with the selected agricultural input. The exact quantity per litre of water is not stated in the catalogue; follow the product label.",
     sizes: ["100ML"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "mg-gold",
@@ -253,6 +274,7 @@ export const PRODUCTS: Product[] = [
     description: "A concentrated amino-acid plant biostimulant that supports vegetative growth, chlorophyll formation, nutrient uptake, flowering, crop recovery, and tolerance to environmental stress.",
     usage: "Apply through foliar spray, drip, or soil application according to the product label. Exact dosage is not stated in the catalogue.",
     sizes: ["500GM"],
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "nova-gold",
@@ -262,6 +284,7 @@ export const PRODUCTS: Product[] = [
     description: "A fulvic-acid-based crop and soil enhancer that helps improve nutrient availability, nutrient transportation, root growth, soil activity, and plant tolerance to stress.",
     usage: "Use through foliar spray, soil application, or drip irrigation according to label instructions. Exact dosage is not provided in the catalogue.",
     sizes: ["500GM"],
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "miracle-gro",
@@ -271,6 +294,7 @@ export const PRODUCTS: Product[] = [
     description: "A concentrated plant growth promoter suitable for fruit, vegetable, field, and horticultural crops. It supports healthy vegetative growth, flowering, fruit development, and crop quality.",
     usage: "Dilute with water and apply as a foliar spray at the appropriate crop-growth stage. Exact dosage is not stated in the catalogue.",
     sizes: ["50ML", "100ML", "250ML"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "bio-magic",
@@ -280,6 +304,7 @@ export const PRODUCTS: Product[] = [
     description: "An organic-carbon-based soil and plant growth product that helps improve soil biological activity, root establishment, nutrient availability, plant vigour, and overall crop development.",
     usage: "Apply through soil, irrigation, or drip application according to the product label. The exact dosage is not mentioned in the catalogue.",
     sizes: ["1L", "5LTR"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "bioclin",
@@ -289,6 +314,7 @@ export const PRODUCTS: Product[] = [
     description: "Bio-based foliar tonic for consistent, healthy crop growth across the season.",
     usage: "Foliar spray: 2 ml/L water. Apply every 10–15 days for healthy crop growth.",
     sizes: ["100ML", "250ML", "500ML", "1L"],
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "neem-10000",
@@ -298,6 +324,7 @@ export const PRODUCTS: Product[] = [
     description: "High-concentration neem-based organic foliar tonic supporting plant health with natural pest deterrence.",
     usage: "Foliar spray: 2–3 ml/L water. Repeat at 7–10 day intervals if required.",
     sizes: ["100ML", "250ML", "500ML", "1L"],
+    videoId: "Sm3ZmJ9Ucoo",
   },
   {
     id: "white-gold",
@@ -307,6 +334,7 @@ export const PRODUCTS: Product[] = [
     description: "Foliar growth formulation supporting vegetative, flowering and fruiting stages for healthier, more productive crops.",
     usage: "Foliar spray: 2–3 ml/L water during vegetative, flowering & fruiting stage.",
     sizes: ["100ML", "250ML", "500ML", "1L"],
+    videoId: "doNHwXDC1dI",
   },
   {
     id: "uptech-98",
@@ -314,8 +342,9 @@ export const PRODUCTS: Product[] = [
     name: "Uptech 98",
     category: "Grape Specialty",
     description: "Draksha-salla cold-stress product (10–12°C) — addresses stalled growth, small berries, low pulp, poor uptake and low sugar.",
-    usage: "5L per acre via drip, 3 times across 70 days from plot stage to harvest.",
+    usage: "5L per acre via drip, 3 ti mes across 70 days from plot stage to harvest.",
     sizes: ["5L"],
+    videoId: "8IaD6hU2sNo",
   },
   {
     id: "garba-gold",
@@ -326,5 +355,6 @@ export const PRODUCTS: Product[] = [
     description: "Maturity hormone from botanical blend & rain minerals — high-quality catalyst for bunch formation post April pruning.",
     usage: "500ML in 200L water on 55th & 65th day after pruning.",
     sizes: ["500ML"],
+    videoId: "8IaD6hU2sNo",
   },
 ];
