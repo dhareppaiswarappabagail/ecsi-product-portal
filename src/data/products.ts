@@ -70,7 +70,7 @@ export const PRODUCTS: Product[] = [
     usage: "Apply directly to the soil during land preparation or around the crop root zone. Exact per-acre dosage is not stated in the catalogue.",
     sizes: ["25KG"],
     badge: "Best Seller",
-    videoId: "Sm3ZmJ9Ucoo",
+    videoId: "TSRJTU063BE",
   },
   {
     id: "dharati-ratn",
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     description: "A foliar nutrition product based on a Silicon 60 and Amino 40 formulation. It helps strengthen leaves, improve plant vigour, and support healthy crop development.",
     usage: "Mix with water and apply as a foliar spray. The exact mixing dose is not mentioned in the catalogue; use according to the label.",
     sizes: ["100GM", "250GM", "500GM"],
-    videoId: "8IaD6hU2sNo",
+    videoId: "StzMpQ2qp1o",
   },
   {
     id: "can-master",
@@ -121,7 +121,7 @@ export const PRODUCTS: Product[] = [
     description: "A liquid plant and soil growth promoter that helps make leaves greener, strengthens plants, increases the number of healthy white roots, and improves soil looseness.",
     usage: "Apply 5 litres per acre through soil, irrigation, or the recommended application method.",
     sizes: ["5LTR"],
-    videoId: "8IaD6hU2sNo",
+    videoId: "kM3mO7QBjf4",
   },
   {
     id: "nano-gel",
@@ -142,7 +142,7 @@ export const PRODUCTS: Product[] = [
     description: "A plant growth regulator formulated to support crop growth, bud development, plant vigour, and recovery during important growth stages.",
     usage: "Apply as a foliar spray according to the crop stage and product label. The exact dosage is not stated in the catalogue.",
     sizes: ["500ML"],
-    videoId: "doNHwXDC1dI",
+    videoId: "m7dj42tVyyQ",
   },
   {
     id: "psp-99",
@@ -152,7 +152,7 @@ export const PRODUCTS: Product[] = [
     description: "An agricultural crop-growth and nutrition product intended to support healthy leaf development, plant vigour, and the growth of vegetable and horticultural crops.",
     usage: "Apply through foliar spray, soil, or irrigation as directed on the product label. Exact dosage is not provided in the catalogue.",
     sizes: ["1KG"],
-    videoId: "Sm3ZmJ9Ucoo",
+    videoId: "d8o5THao51Q",
   },
   {
     id: "6-ba",
@@ -264,7 +264,7 @@ export const PRODUCTS: Product[] = [
     description: "A silicone spreader and spray activator that improves the spreading, wetting, coverage, and utilisation of weedicides, insecticides, fungicides, plant growth regulators, and pesticides.",
     usage: "Add to the spray tank with the selected agricultural input. The exact quantity per litre of water is not stated in the catalogue; follow the product label.",
     sizes: ["100ML"],
-    videoId: "doNHwXDC1dI",
+    videoId: "nnWsMeg3XBE",
   },
   {
     id: "mg-gold",
@@ -294,7 +294,7 @@ export const PRODUCTS: Product[] = [
     description: "A concentrated plant growth promoter suitable for fruit, vegetable, field, and horticultural crops. It supports healthy vegetative growth, flowering, fruit development, and crop quality.",
     usage: "Dilute with water and apply as a foliar spray at the appropriate crop-growth stage. Exact dosage is not stated in the catalogue.",
     sizes: ["50ML", "100ML", "250ML"],
-    videoId: "doNHwXDC1dI",
+    videoId: "4xe0heL0FNY",
   },
   {
     id: "bio-magic",
@@ -304,7 +304,7 @@ export const PRODUCTS: Product[] = [
     description: "An organic-carbon-based soil and plant growth product that helps improve soil biological activity, root establishment, nutrient availability, plant vigour, and overall crop development.",
     usage: "Apply through soil, irrigation, or drip application according to the product label. The exact dosage is not mentioned in the catalogue.",
     sizes: ["1L", "5LTR"],
-    videoId: "doNHwXDC1dI",
+    videoId: "hc3o733kL5c",
   },
   {
     id: "bioclin",
@@ -314,7 +314,7 @@ export const PRODUCTS: Product[] = [
     description: "Bio-based foliar tonic for consistent, healthy crop growth across the season.",
     usage: "Foliar spray: 2 ml/L water. Apply every 10–15 days for healthy crop growth.",
     sizes: ["100ML", "250ML", "500ML", "1L"],
-    videoId: "8IaD6hU2sNo",
+    videoId: "R8lgAb4zYJ0",
   },
   {
     id: "neem-10000",
